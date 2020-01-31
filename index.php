@@ -13,53 +13,53 @@
             
             <p align="center" style="color: blue;">
             	<?php
-					//___________ Code For URL Tracker ________ @rahul barui
+			//___________ Code For URL Tracker ________ @rahul barui
 
-					$url = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$url = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-					//___________ Code For Real or Fake IP Tracker ________ @rahul barui
+			//___________ Code For Real or Fake IP Tracker ________ @rahul barui
 
-					function getUserIpAddr(){
-					    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-					        //IP from share internet
-					        $ip = $_SERVER['HTTP_CLIENT_IP'];
-					    }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-					        //IP pass from proxy
-					        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-					    }else{
-					        $ip = $_SERVER['REMOTE_ADDR'];
-					    }
-					    return $ip;
-					}
-					
-					$getIP = getUserIpAddr();
+			function getUserIpAddr(){
+			    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+				//IP from share internet
+				$ip = $_SERVER['HTTP_CLIENT_IP'];
+			    }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+				//IP pass from proxy
+				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			    }else{
+				$ip = $_SERVER['REMOTE_ADDR'];
+			    }
+			    return $ip;
+			}
 
-					//___________ Code For Address Tracker Using IP________ @rahul barui
-					
-					$ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $getIP));
+			$getIP = getUserIpAddr();
 
-					$country = $ipdat->geoplugin_countryName;
-					$city = $ipdat->geoplugin_city;
-					$continent = $ipdat->geoplugin_continentName;
-					$latitude = $ipdat->geoplugin_latitude;
-					$longitude = $ipdat->geoplugin_longitude;
-					$currencySymbol = $ipdat->geoplugin_currencySymbol;
-					$currencyCode = $ipdat->geoplugin_currencyCode;
-					$timezone = $ipdat->geoplugin_timezone;
+			//___________ Code For Address Tracker Using IP________ @rahul barui
 
-					echo 'Your Current URL Is : '.$url.'<br>';
-					echo 'Your Real IP Is : '.$getIP.'<br>';
-					   
-					echo 'Country Name: '.$country.'<br>'; 
-					echo 'City Name: '.$city.'<br>'; 
-					echo 'Continent Name: '.$continent.'<br>'; 
-					echo 'Latitude: '.$latitude.'<br>'; 
-					echo 'Longitude: '.$longitude.'<br>'; 
-					echo 'Currency Symbol: '.$currencySymbol.'<br>'; 
-					echo 'Currency Code: '.$currencyCode.'<br>'; 
-					echo 'Timezone: '.$timezone;
-					
-				?>
+			$ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $getIP));
+
+			$country = $ipdat->geoplugin_countryName;
+			$city = $ipdat->geoplugin_city;
+			$continent = $ipdat->geoplugin_continentName;
+			$latitude = $ipdat->geoplugin_latitude;
+			$longitude = $ipdat->geoplugin_longitude;
+			$currencySymbol = $ipdat->geoplugin_currencySymbol;
+			$currencyCode = $ipdat->geoplugin_currencyCode;
+			$timezone = $ipdat->geoplugin_timezone;
+
+			echo 'Your Current URL Is : '.$url.'<br>';
+			echo 'Your Real IP Is : '.$getIP.'<br>';
+
+			echo 'Country Name: '.$country.'<br>'; 
+			echo 'City Name: '.$city.'<br>'; 
+			echo 'Continent Name: '.$continent.'<br>'; 
+			echo 'Latitude: '.$latitude.'<br>'; 
+			echo 'Longitude: '.$longitude.'<br>'; 
+			echo 'Currency Symbol: '.$currencySymbol.'<br>'; 
+			echo 'Currency Code: '.$currencyCode.'<br>'; 
+			echo 'Timezone: '.$timezone;
+
+		?>
             </p>
 
             <br>
